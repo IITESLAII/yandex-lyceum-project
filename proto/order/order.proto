@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+option go_package = "pkg/api/client";
+
+package api;
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse){
+    option (google.api.http) = {
+      post: "/v1/order"
+      body: "*"
+      };
+  }
+
+}
+
+message CreateOrderRequest {
+  string userID = 1;
+  repeated string products = 2;
+}
+
+message CreateOrderResponse {
+  string orderID = 1;
+}
